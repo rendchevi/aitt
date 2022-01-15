@@ -2,7 +2,7 @@ import os, argparse
 import timeit
 from glob import glob
 
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 import numpy as np
 from skimage.io import imread
 
@@ -23,7 +23,7 @@ def run(args):
         test_data.append(image)
 
     # Load the TFLite model and allocate tensors
-    model = tf.lite.Interpreter(model_path = args.model_path)
+    model = tflite.Interpreter(model_path = args.model_path)
     model.allocate_tensors()
 
     # Get input and output tensors

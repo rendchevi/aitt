@@ -11,12 +11,12 @@ from skimage.color import rgb2gray
 from src.utils.helpers import bgr_to_rgb
 from src.utils.misc import image_classes_dict
 
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 
 def run_app(args):
 
     # Load the TFLite model and allocate tensors
-    model = tf.lite.Interpreter(model_path = args.model_path)
+    model = tflite.Interpreter(model_path = args.model_path)
     model.allocate_tensors()
 
     # Get input and output tensors
