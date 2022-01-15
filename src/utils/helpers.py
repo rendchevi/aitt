@@ -33,5 +33,27 @@ def load_mel_from_file(
     )
     # Take log mel-spectrogram
     mel = librosa.util.normalize(librosa.power_to_db(mel)).T
+
+    return mel
+
+def load_mel_from_wave(
+    wave,
+    sampling_rate = 16_000,
+    n_fft = 1024,
+    hop_length = 256,
+    win_length = 1024,
+    n_mels = 80,
+):
+    # Process wave to mel
+    mel = librosa.feature.melspectrogram(
+        y = wave,
+        sr = sampling_rate,
+        n_mels = n_mels,
+        n_fft = n_fft,
+        hop_length = hop_length,
+        win_length = win_length,
+    )
+    # Take log mel-spectrogram
+    mel = librosa.util.normalize(librosa.power_to_db(mel)).T
     
     return mel
